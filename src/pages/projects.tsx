@@ -1,13 +1,13 @@
-import Link from '@docusaurus/Link';
+import { Icon } from '@iconify/react';
 import Heading from '@theme/Heading';
 import Layout from '@theme/Layout';
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
 import styles from './projects.module.css';
 
 interface ProjectButtonProps {
-  name: string;
+  label: string;
+  icon: string;
   href: string;
 }
 
@@ -25,11 +25,13 @@ const projects: Project[] = [
     image: 'https://placehold.co/640x360?text=Project+One',
     buttons: [
       {
-        name: 'View on Marketplace',
+        label: 'View on Marketplace',
+        icon: 'mdi:visual-studio-code',
         href: 'https://marketplace.visualstudio.com/items?itemName=edacation.edacation'
       },
       {
-        name: 'View on GitHub',
+        label: 'View on GitHub',
+        icon: 'mdi:github',
         href: 'https://github.com/EDAcation/vscode-edacation'
       }
     ],
@@ -40,11 +42,18 @@ const projects: Project[] = [
     image: 'https://placehold.co/640x360?text=Project+Two',
     buttons: [
       {
-        name: 'Try the Web App',
+        label: 'Try the Web App',
+        icon: 'mdi:web',
         href: 'https://edacation.github.io/nextpnr-viewer/'
       },
       {
-        name: 'View on GitHub',
+        label: 'View on NPM',
+        icon: 'gg:npm',
+        href: 'https://www.npmjs.com/package/nextpnr-viewer'
+      },
+      {
+        label: 'View on GitHub',
+        icon: 'mdi:github',
         href: 'https://github.com/EDAcation/nextpnr-viewer'
       }
     ],
@@ -55,11 +64,13 @@ const projects: Project[] = [
     image: 'https://placehold.co/640x360?text=Project+Three',
     buttons: [
       {
-        name: 'View on Marketplace',
+        label: 'View on Marketplace',
+        icon: 'mdi:visual-studio-code',
         href: 'https://marketplace.visualstudio.com/items?itemName=edacation.pincfg-editor'
       },
       {
-        name: 'View on GitHub',
+        label: 'View on GitHub',
+        icon: 'mdi:github',
         href: 'https://github.com/EDAcation/project-three'
       }
     ],
@@ -70,7 +81,13 @@ const projects: Project[] = [
     image: 'https://placehold.co/640x360?text=Project+Four',
     buttons: [
       {
-        name: 'View on GitHub',
+        label: 'View on NPM',
+        icon: 'gg:npm',
+        href: 'https://www.npmjs.com/package/edacation'
+      },
+      {
+        label: 'View on GitHub',
+        icon: 'mdi:github',
         href: 'https://github.com/EDAcation/edacation'
       }
     ],
@@ -81,7 +98,8 @@ const projects: Project[] = [
     image: 'https://placehold.co/640x360?text=Project+Five',
     buttons: [
       {
-        name: 'View on GitHub',
+        label: 'View on GitHub',
+        icon: 'mdi:github',
         href: 'https://github.com/EDAcation/native-fpga-tools'
       }
     ],
@@ -116,17 +134,21 @@ export default function Projects(): ReactNode {
                     {project.name}
                   </Heading>
                   <p className={styles.cardDescription}>{project.description}</p>
-                  {
-                    project.buttons?.map((button) => (
-                      <Link
-                        className={clsx('button button--secondary button--sm', styles.cardLink)}
+                  <div className={styles.cardActions}>
+                    {project.buttons.map((button) => (
+                      <a
+                        key={button.label}
+                        className={styles.iconButton}
                         href={button.href}
                         target="_blank"
-                        rel="noopener noreferrer">
-                        {button.name}
-                      </Link>
-                    ))
-                  }
+                        rel="noreferrer"
+                        aria-label={button.label}
+                      >
+                        <Icon className={styles.iconSvg} icon={button.icon} />
+                        <span className={styles.iconLabel}>{button.label}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}

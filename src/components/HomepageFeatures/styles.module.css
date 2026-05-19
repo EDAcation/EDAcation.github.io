@@ -8,7 +8,14 @@
   width: 100%;
 }
 
+.featureColumn {
+  display: flex;
+}
+
 .featureCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: linear-gradient(
     160deg,
     rgba(255, 255, 255, 0.98),
@@ -20,6 +27,18 @@
   padding: 2.25rem 1.75rem;
   min-height: 220px;
   transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.featureTitle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.featureIcon {
+  font-size: 1.6rem;
+  color: var(--ifm-color-primary-dark);
 }
 
 .featureCard:hover {
@@ -39,4 +58,8 @@
 
 [data-theme='dark'] .featureCard:hover {
   box-shadow: 0 24px 42px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] .featureIcon {
+  color: var(--ifm-color-primary-lightest);
 }

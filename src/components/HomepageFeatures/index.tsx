@@ -1,3 +1,4 @@
+import { InlineIcon } from '@iconify/react';
 import Heading from '@theme/Heading';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
@@ -5,12 +6,14 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
+  icon: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to use',
+    title: 'Easy to Use',
+    icon: 'mdi:rocket-launch-outline',
     description: (
       <>
         Simply install our VSCode extension and start designing! No manual tool
@@ -19,7 +22,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Available everywhere',
+    title: 'Available Everywhere',
+    icon: 'mdi:devices',
     description: (
       <>
         Windows, macOS, Linux, in your browser, or anywhere else VSCode runs!
@@ -27,16 +31,26 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Fully FOSS',
+    title: 'Full Dev Experience',
+    icon: 'boxicons:chip',
     description: (
       <>
-        EDAcation and all of its subprojects are MIT licensed. We also accept
-        contributions!
+        RTL, synthesis, place and route, simulation, programming and more - all in one extension.
       </>
     ),
   },
   {
-    title: 'Shoulders of giants',
+    title: 'Fully FOSS',
+    icon: 'mdi:license',
+    description: (
+      <>
+        EDAcation and all of its subprojects are MIT licensed. No closed-source components, ever. Come help us build!
+      </>
+    ),
+  },
+  {
+    title: 'Shoulders of Giants',
+    icon: 'mdi:tools',
     description: (
       <>
         Our motto: don't reinvent the wheel! We make tools like <a href="https://github.com/YosysHQ/yosys">Yosys</a>,{' '}
@@ -49,11 +63,12 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, description}: FeatureItem) {
+function Feature({title, icon, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3', styles.featureColumn)}>
       <div className={clsx('text--center padding-horiz--md', styles.featureCard)}>
-        <Heading as="h3">
+        <Heading as="h3" className={styles.featureTitle}>
+          <InlineIcon className={styles.featureIcon} icon={icon} />
           {title}
         </Heading>
         <p>{description}</p>
