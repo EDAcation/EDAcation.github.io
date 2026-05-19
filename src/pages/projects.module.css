@@ -1,0 +1,118 @@
+.page {
+  padding: 3.5rem 0 5rem;
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(113, 194, 139, 0.18),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(31, 122, 74, 0.18),
+      transparent 40%
+    );
+}
+
+.hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.title {
+  font-size: clamp(2.2rem, 3vw, 3.1rem);
+  letter-spacing: -0.02em;
+  font-family: "Space Grotesk", "Fira Sans", "Segoe UI", sans-serif;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.8rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, #ffffff 92%);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 30%, #ffffff 70%);
+  box-shadow: 0 18px 36px rgba(9, 20, 44, 0.12);
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, #ffffff 80%);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.8rem 1.6rem 2rem;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  margin-bottom: 0;
+}
+
+.cardDescription {
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  flex: 1;
+}
+
+.cardLink {
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme='dark'] .page {
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(113, 194, 139, 0.22),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(31, 122, 74, 0.24),
+      transparent 40%
+    );
+}
+
+[data-theme='dark'] .card {
+  background: color-mix(in srgb, var(--ifm-color-primary) 18%, #0b0f18 82%);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 32%, #0b0f18 68%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .cardImage {
+  border-bottom: 1px solid color-mix(in srgb, var(--ifm-color-primary) 30%, #0b0f18 70%);
+}
+
+[data-theme='dark'] .subtitle,
+[data-theme='dark'] .cardDescription {
+  color: var(--ifm-color-emphasis-300);
+}
+
+@media screen and (max-width: 996px) {
+  .page {
+    padding: 3rem 0 4rem;
+  }
+
+  .cardBody {
+    padding: 1.5rem 1.4rem 1.8rem;
+  }
+}
