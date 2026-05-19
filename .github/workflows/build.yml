@@ -16,19 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-    outputs:
-      vsixPath: ${{ steps.packageExtension.outputs.vsixPath }}
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
-      - name: Install Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+      - name: Enable Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v7
       - name: Install Dependencies
-        run: npm ci
+        run: nix develop --command npm ci
       - name: Build website
-        run: npm run build
+        run: nix develop --command npm run build
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -39,7 +37,7 @@ jobs:
     name: Publish
     needs:
       - build
-    if: github.ref_name == 'main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
@@ -48,4 +46,3 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: static-files
-
